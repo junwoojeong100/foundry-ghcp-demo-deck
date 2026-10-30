@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Microsoft Foundry × GitHub Copilot — 데모로 보는 AI 앱 개발</title>
+<meta name="description" content="고객 소개용 데모 중심 슬라이드 20장과 실제 화면 녹화 영상 11개. 브라우저에서 바로 보거나 PPTX를 내려받으세요.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Microsoft Foundry × GitHub Copilot — 데모로 보는 AI 앱 개발">
+<meta property="og:description" content="슬라이드 20장 + 실제 화면 녹화 영상 11개 (Foundry 5 · Copilot 6)">
+<meta property="og:image" content="https://junwoojeong100.github.io/foundry-ghcp-demo-deck/assets/thumbs/f3_agent.jpg">
+<link rel="icon" href="data:,">
+<style>
+  :root { --ink:#14233a; --body:#33465a; --muted:#5f7185; --line:#d7e2ee; --bg:#f5f7fb; --blue:#0f6cbd; --blue-dk:#0a4f8f; --blue-tint:#e7f1fb; --purple:#6e40c9; --purple-dk:#4d2a9e; --purple-tint:#f0ebfb; --amber:#f0b429; }
+  * { box-sizing:border-box; }
+  body { margin:0; font-family:system-ui,-apple-system,"Segoe UI","Malgun Gothic","Apple SD Gothic Neo",sans-serif; color:var(--body); background:var(--bg); line-height:1.55; }
+  a { color:inherit; }
+  .hero { background:radial-gradient(900px 420px at 0% 0%,rgba(47,124,246,.40),transparent 60%),radial-gradient(900px 420px at 100% 100%,rgba(139,92,246,.40),transparent 60%),#0b1020; color:#fff; padding:56px 20px 48px; }
+  .wrap { max-width:1160px; margin:0 auto; }
+  .kicker { display:inline-block; font-size:12px; letter-spacing:.14em; font-weight:700; color:#8dbbff; border:1px solid #2a3760; background:#1b2646; border-radius:999px; padding:6px 14px; }
+  h1 { font-size:clamp(28px,5vw,48px); line-height:1.15; margin:18px 0 10px; }
+  h1 .x { color:var(--amber); }
+  .sub { font-size:clamp(16px,2.2vw,20px); color:#c9d3e6; margin:0 0 26px; max-width:760px; }
+  .cta { display:flex; flex-wrap:wrap; gap:12px; }
+  .btn { display:inline-flex; align-items:center; gap:8px; padding:13px 22px; border-radius:12px; font-weight:700; text-decoration:none; font-size:16px; }
+  .btn.primary { background:var(--amber); color:#14233a; }
+  .btn.ghost { border:1px solid #3a4a78; color:#fff; background:rgba(255,255,255,.06); }
+  .btn:hover { filter:brightness(1.08); }
+  .facts { display:flex; flex-wrap:wrap; gap:10px 22px; margin-top:26px; font-size:14px; color:#aab6cf; }
+  .facts b { color:#fff; }
+  main { padding:34px 20px 20px; }
+  .sec { margin:10px 0 38px; }
+  .sec-h { display:flex; align-items:baseline; gap:14px; flex-wrap:wrap; margin-bottom:16px; }
+  .pill { font-size:12px; font-weight:800; letter-spacing:.12em; color:#fff; border-radius:999px; padding:6px 14px; }
+  .pill.f { background:var(--blue); } .pill.p { background:var(--purple); }
+  .sec-h h2 { margin:0; font-size:20px; color:var(--ink); }
+  .sec-h .tot { margin-left:auto; font-weight:700; font-size:14px; }
+  .sec-h .tot.f { color:var(--blue-dk); } .sec-h .tot.p { color:var(--purple-dk); }
+  .grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(330px,1fr)); gap:20px; }
+  .card { background:#fff; border:1px solid var(--line); border-radius:14px; padding:12px 12px 16px; box-shadow:0 2px 10px rgba(10,26,51,.06); border-top:4px solid var(--blue); }
+  .card.p { border-top-color:var(--purple); }
+  video { width:100%; display:block; border-radius:8px; background:#060a14; }
+  .meta { display:flex; align-items:center; gap:10px; margin:12px 4px 2px; font-size:12px; color:var(--muted); }
+  .badge { font-weight:800; letter-spacing:.08em; border-radius:999px; padding:3px 10px; }
+  .card.f .badge { background:var(--blue-tint); color:var(--blue-dk); } .card.p .badge { background:var(--purple-tint); color:var(--purple-dk); }
+  .slide { margin-left:auto; }
+  h3 { margin:4px 4px 4px; font-size:18px; color:var(--ink); }
+  .card p { margin:0 4px; font-size:14px; }
+  .note { background:#fff; border:1px solid var(--line); border-left:4px solid var(--amber); border-radius:10px; padding:16px 18px; font-size:14px; margin:6px 0 26px; }
+  .note ul { margin:6px 0 0; padding-left:20px; }
+  footer { padding:10px 20px 44px; font-size:13px; color:var(--muted); }
+  footer a { color:var(--blue-dk); }
+</style>
+</head>
+<body>
+<header class="hero">
+  <div class="wrap">
+    <span class="kicker">CUSTOMER BRIEFING · 2026.10</span>
+    <h1>Microsoft Foundry <span class="x">×</span> GitHub Copilot<br>데모로 보는 AI 앱 개발</h1>
+    <p class="sub">만들고, 안전하게 운영하고, 평가하는 전 과정을 슬라이드가 아닌 <b>실제 화면 녹화</b>로 보여드립니다.</p>
+    <div class="cta">
+      <a class="btn primary" href="https://view.officeapps.live.com/op/view.aspx?src=https%3A%2F%2Fjunwoojeong100.github.io%2Ffoundry-ghcp-demo-deck%2Fko%2FMicrosoft_Foundry_GitHub_Copilot_Demo_Deck_KO.pptx">📑 슬라이드 웹에서 열기</a>
+      <a class="btn ghost" href="https://github.com/junwoojeong100/foundry-ghcp-demo-deck/raw/main/ko/Microsoft_Foundry_GitHub_Copilot_Demo_Deck_KO.pptx">⬇ PPTX 내려받기 (약 39 MB)</a>
+      <a class="btn ghost" href="https://github.com/junwoojeong100/foundry-ghcp-demo-deck">GitHub 저장소</a>
+    </div>
+    <div class="facts"><span><b>20</b>장 슬라이드 · 발표 노트 포함</span><span><b>11</b>개 데모 영상 (Foundry 5 · Copilot 6)</span><span>영상 합계 <b>6분 36초</b></span></div>
+  </div>
+</header>
+<main>
+  <div class="wrap">
+    <div class="note">
+      <b>보는 방법</b>
+      <ul>
+        <li><b>슬라이드</b>는 Microsoft PowerPoint for the web 으로 열립니다. 영상 위 ▶ 를 누르면 재생되고, 오른쪽 아래 <b>Notes</b> 에서 발표 노트를 볼 수 있습니다. 웹 뷰어는 자체 글꼴을 써서 줄바꿈이 조금 다를 수 있으니, 정확한 모양은 PPTX 를 내려받아 PowerPoint 에서 보세요.</li>
+        <li><b>영상</b>은 아래에서 한 개씩 바로 재생됩니다 (무음 · 설명은 슬라이드 노트 참고).</li>
+      </ul>
+    </div>
+
+    <section class="sec">
+      <div class="sec-h"><span class="pill f">MICROSOFT FOUNDRY</span><h2>모델 선택 → 배포 → 에이전트 → 안전 → 평가</h2><span class="tot f">5개 · 3분 5초</span></div>
+      <div class="grid">
+      <article class="card f">
+        <video controls preload="none" playsinline poster="assets/thumbs/f1_catalog.jpg" style="aspect-ratio:16 / 9">
+          <source src="assets/clips/f1_catalog.mp4" type="video/mp4">
+        </video>
+        <div class="meta"><span class="badge">DEMO 1</span><span class="dur">0:40</span><span class="slide">슬라이드 5</span></div>
+        <h3>모델 카탈로그 · 비교</h3>
+        <p>여러 제공사의 모델을 한 곳에서 찾고, 3개 모델을 나란히 비교합니다.</p>
+      </article>
+      <article class="card f">
+        <video controls preload="none" playsinline poster="assets/thumbs/f2_deploy.jpg" style="aspect-ratio:16 / 9">
+          <source src="assets/clips/f2_deploy.mp4" type="video/mp4">
+        </video>
+        <div class="meta"><span class="badge">DEMO 2</span><span class="dur">0:27</span><span class="slide">슬라이드 6</span></div>
+        <h3>배포 → 바로 테스트</h3>
+        <p>클릭 몇 번으로 배포하고 Playground에서 한국어로 대화, 코드는 키 없이(Entra ID) 연결합니다.</p>
+      </article>
+      <article class="card f">
+        <video controls preload="none" playsinline poster="assets/thumbs/f3_agent.jpg" style="aspect-ratio:16 / 9">
+          <source src="assets/clips/f3_agent.mp4" type="video/mp4">
+        </video>
+        <div class="meta"><span class="badge">DEMO 3</span><span class="dur">0:50</span><span class="slide">슬라이드 7</span></div>
+        <h3>에이전트 + 우리 문서</h3>
+        <p>역할·규칙을 지침으로 쓰고 정책 문서를 올리면 근거를 표시하며 답하는 에이전트가 됩니다.</p>
+      </article>
+      <article class="card f">
+        <video controls preload="none" playsinline poster="assets/thumbs/f4_guardrails.jpg" style="aspect-ratio:16 / 9">
+          <source src="assets/clips/f4_guardrails.mp4" type="video/mp4">
+        </video>
+        <div class="meta"><span class="badge">DEMO 4</span><span class="dur">0:25</span><span class="slide">슬라이드 8</span></div>
+        <h3>Guardrails</h3>
+        <p>탈옥(Jailbreak) 시도를 입력 단계에서 차단하고 위험 유형까지 보여줍니다.</p>
+      </article>
+      <article class="card f">
+        <video controls preload="none" playsinline poster="assets/thumbs/f5_eval.jpg" style="aspect-ratio:16 / 9">
+          <source src="assets/clips/f5_eval.mp4" type="video/mp4">
+        </video>
+        <div class="meta"><span class="badge">DEMO 5</span><span class="dur">0:43</span><span class="slide">슬라이드 9</span></div>
+        <h3>Evaluations</h3>
+        <p>에이전트 지침으로 테스트 질문 15개를 만들고 평가기 6종으로 품질·안전을 채점합니다.</p>
+      </article>
+      </div>
+    </section>
+
+    <section class="sec">
+      <div class="sec-h"><span class="pill p">GITHUB COPILOT</span><h2>분석 → 설계 → 구현·테스트 → 리뷰 → 배포, 그리고 안전장치</h2><span class="tot p">6개 · 3분 32초</span></div>
+      <div class="grid">
+      <article class="card p">
+        <video controls preload="none" playsinline poster="assets/thumbs/cp1_analyze.jpg" style="aspect-ratio:1880 / 968">
+          <source src="assets/clips/cp1_analyze.mp4" type="video/mp4">
+        </video>
+        <div class="meta"><span class="badge">DEMO 6</span><span class="dur">0:30</span><span class="slide">슬라이드 11</span></div>
+        <h3>분석</h3>
+        <p>변경 요청서를 받은 &#x27;변경 분석가&#x27; 에이전트가 코드·문서·데이터를 읽고 영향 범위를 정리합니다.</p>
+      </article>
+      <article class="card p">
+        <video controls preload="none" playsinline poster="assets/thumbs/cp2_design.jpg" style="aspect-ratio:1880 / 968">
+          <source src="assets/clips/cp2_design.mp4" type="video/mp4">
+        </video>
+        <div class="meta"><span class="badge">DEMO 7</span><span class="dur">0:39</span><span class="slide">슬라이드 12</span></div>
+        <h3>설계</h3>
+        <p>애매한 정책은 사람에게 묻고, 설계 승인 뒤에야 코드 수정이 허용됩니다.</p>
+      </article>
+      <article class="card p">
+        <video controls preload="none" playsinline poster="assets/thumbs/cp3_build_test.jpg" style="aspect-ratio:1880 / 968">
+          <source src="assets/clips/cp3_build_test.mp4" type="video/mp4">
+        </video>
+        <div class="meta"><span class="badge">DEMO 8</span><span class="dur">0:37</span><span class="slide">슬라이드 13</span></div>
+        <h3>구현 · 테스트</h3>
+        <p>구현과 검증을 다른 에이전트가 맡아 테스트 26개 → 117개, 커버리지 99%.</p>
+      </article>
+      <article class="card p">
+        <video controls preload="none" playsinline poster="assets/thumbs/cp4_review.jpg" style="aspect-ratio:1880 / 968">
+          <source src="assets/clips/cp4_review.mp4" type="video/mp4">
+        </video>
+        <div class="meta"><span class="badge">DEMO 9</span><span class="dur">0:30</span><span class="slide">슬라이드 14</span></div>
+        <h3>리뷰</h3>
+        <p>변경분을 설계서·보안 점검표와 대조하고 코드 승인은 사람이 합니다.</p>
+      </article>
+      <article class="card p">
+        <video controls preload="none" playsinline poster="assets/thumbs/cp5_deploy.jpg" style="aspect-ratio:1880 / 968">
+          <source src="assets/clips/cp5_deploy.mp4" type="video/mp4">
+        </video>
+        <div class="meta"><span class="badge">DEMO 10</span><span class="dur">0:35</span><span class="slide">슬라이드 15</span></div>
+        <h3>배포</h3>
+        <p>staging 검증과 스모크 테스트 뒤 운영 배포는 사람이 승인합니다.</p>
+      </article>
+      <article class="card p">
+        <video controls preload="none" playsinline poster="assets/thumbs/cp7_guardrail.jpg" style="aspect-ratio:1880 / 968">
+          <source src="assets/clips/cp7_guardrail.mp4" type="video/mp4">
+        </video>
+        <div class="meta"><span class="badge">DEMO 11</span><span class="dur">0:41</span><span class="slide">슬라이드 16</span></div>
+        <h3>안전장치</h3>
+        <p>승인 없는 코드 수정·위험 명령(git push)을 Hook 이 시스템 수준에서 차단합니다.</p>
+      </article>
+      </div>
+    </section>
+
+    <div class="note">
+      <b>알아두세요</b>
+      <ul>
+        <li>ShopFlow(가상 쇼핑몰)의 이름·데이터·승인자는 모두 가상입니다. 대기 구간은 컷·배속 처리했습니다.</li>
+        <li>Foundry 화면은 2026-10-30 에 녹화했습니다. 표시되는 모델·기능은 구독·리전·시점에 따라 다를 수 있고, 평가 점수는 LLM 판정이라 실행마다 달라질 수 있습니다.</li>
+        <li>Copilot 화면은 <a href="https://github.com/junwoojeong100/ghcp_cli_workflow_demo_kit">ghcp_cli_workflow_demo_kit</a>(ShopFlow) 한국어판 녹화 세션에서 가져왔습니다. 수치는 1회 실행값이며 고객 환경의 결과를 보장하지 않습니다.</li>
+      </ul>
+    </div>
+  </div>
+</main>
+<footer><div class="wrap">© junwoojeong100 · <a href="https://github.com/junwoojeong100/foundry-ghcp-demo-deck">소스와 빌드 방법은 저장소 README 참고</a></div></footer>
+<script>
+  // 한 번에 하나의 영상만 재생
+  document.addEventListener('play', function (e) {
+    document.querySelectorAll('video').forEach(function (v) { if (v !== e.target) v.pause(); });
+  }, true);
+</script>
+</body>
+</html>

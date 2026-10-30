@@ -1,0 +1,6 @@
+node_modules/
+build/out/
+build/lo_profile/
+assets/slide/
+__pycache__/
+.DS_Store
