@@ -161,7 +161,10 @@ async function assemble(sc, outPath) {
   lines.push(`file '${fr[fr.length - 1].file}'`);
   const list = path.join(sc.dir, "frames.txt");
   fs.writeFileSync(list, lines.join("\n"));
-  const r = spawnSync("/opt/homebrew/bin/ffmpeg", ["-v", "error", "-y", "-f", "concat", "-safe", "0", "-i", list, "-vf", "fps=30,format=yuv420p", "-c:v", "libx264", "-preset", "veryfast", "-crf", "16", "-threads", "2", outPath], { stdio: "inherit" });
+  // CDP screencast frames are JPEG (full range, BT.601). Convert them to limited-range BT.709 here; otherwise the clips come out as
+  // yuvj420p (full range), unlike every other clip in the deck (yuv420p, limited range, BT.709).
+  const toLimited709 = "scale=in_range=pc:in_color_matrix=bt601:out_range=tv:out_color_matrix=bt709:flags=accurate_rnd+full_chroma_int,format=yuv420p";
+  const r = spawnSync("/opt/homebrew/bin/ffmpeg", ["-v", "error", "-y", "-f", "concat", "-safe", "0", "-i", list, "-vf", `fps=30,${toLimited709}`, "-c:v", "libx264", "-preset", "veryfast", "-crf", "16", "-threads", "2", "-x264-params", "colorprim=bt709:transfer=bt709:colormatrix=bt709:range=tv", outPath], { stdio: "inherit" });
   if (r.status !== 0) throw new Error("ffmpeg assemble failed");
   log(`frames: ${fr.length}, source: ${outPath}`);
 }
