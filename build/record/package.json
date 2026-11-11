@@ -1,0 +1,9 @@
+{
+  "name": "foundry-ghcp-demo-deck-record",
+  "private": true,
+  "type": "module",
+  "description": "Recorder for the English Foundry demo clips (foundry_en.mjs) and the cards of the narrated video (../video/cards.mjs)",
+  "dependencies": {
+    "playwright": "^1.49.0"
+  }
+}
