@@ -1,0 +1,16 @@
+00:00 Introduction
+00:10 Microsoft Foundry
+00:20 Demo 1: Model catalog and compare
+01:02 Demo 2: Deploy and test
+01:34 Demo 3: An agent on our own document
+02:31 Demo 4: Guardrails
+02:58 Demo 5: Evaluations
+03:46 GitHub Copilot
+04:02 Demo 6: Analyze
+04:33 Demo 7: Design
+05:15 Demo 8: Build and test
+05:52 Demo 9: Review
+06:23 Demo 10: Deploy
+06:57 Demo 11: Safeguards
+07:40 Results
+07:59 Next step
