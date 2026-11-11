@@ -1,0 +1,194 @@
+{
+  "_meta": {
+    "source_dir": "production-source/video/en/ of the GHCP_CLI_Demo_Kit working copy (English recording of the ghcp_cli_workflow_demo_kit scenario)",
+    "encoding": "libx264 slow crf21 high@4.1 yuv420p +faststart -an, 30 fps, 1880x968, fade-in 0.25 s, fade-out 0.35 s, -threads 2",
+    "method": "frame-exact trim / integer decimation (2x,3x) / concatenation of source frames; no overlay, crop, scale or re-render. Every segment verified against its source frames (PSNR 44-52 dB).",
+    "note": "All times are seconds. 'out' = time in the finished clip, 'src' = time in the source file. Ranges in key_moments were measured on the FINAL clips (+-0.2 s). Posters are PNG 1880x968 taken at poster_time."
+  },
+  "cp1_analyze": {
+    "duration": 29.5,
+    "sources": ["slide-stage1.mp4"],
+    "poster": "cp1_analyze_poster.png",
+    "poster_time": 27.9,
+    "segments": [
+      {"source": "slide-stage1.mp4", "src_start": 1.6, "src_end": 4.9, "speed": 1, "out_start": 0.0, "out_end": 3.3, "note": "Custom Agents picker, change-analyst highlighted"},
+      {"source": "slide-stage1.mp4", "src_start": 6.5, "src_end": 8.7, "speed": 1, "out_start": 3.3, "out_end": 5.5, "note": "Enter -> 'Selected custom agent: change-analyst' (idle wait 4.9-6.5 cut)"},
+      {"source": "slide-stage1.mp4", "src_start": 8.7, "src_end": 21.6, "speed": 3, "out_start": 5.5, "out_end": 9.8, "note": "request prompt being typed (3x)"},
+      {"source": "slide-stage1.mp4", "src_start": 21.6, "src_end": 27.0, "speed": 1, "out_start": 9.8, "out_end": 15.2, "note": "Enter; agent reads docs/code (already 8x in source)"},
+      {"source": "slide-stage1.mp4", "src_start": 28.1, "src_end": 33.0, "speed": 1, "out_start": 15.2, "out_end": 20.1, "note": "read-only sqlite3 queries; main risk stated (idle 27.0-28.1 cut)"},
+      {"source": "slide-stage1.mp4", "src_start": 35.6, "src_end": 45.0, "speed": 1, "out_start": 20.1, "out_end": 29.5, "note": "report saved; final summary held (waiting 33.0-35.6 cut)"}
+    ],
+    "key_moments": {
+      "request_handed_over": [9.8, 10.7],
+      "agent_reading_read_only": [10.7, 20.1],
+      "final_summary": [22.5, 29.5]
+    },
+    "facts": [
+      {"t": 3.0, "text": "Copilot CLI 'Custom Agents' picker lists the workflow agents (app-developer, change-analyst, code-reviewer, ops-analyst, qa-engineer, release-manager, solution-architect); change-analyst is chosen. Caption: 'The business change request goes to the Change Analyst agent'."},
+      {"t": 9.8, "text": "Prompt typed to change-analyst is complete and sent: 'Analyze the impact of change request CR-2026-014 (docs/requirements/CR-2026-014.md).'"},
+      {"t": 17.5, "text": "Caption 'Reading code, docs and real data to find the impact (waiting time is sped up)' with an '8x speed' badge: Read lines for CR-2026-014.md, standards, refund_service.py, schemas.py, 001_init.sql, main.py...; read-only 'sqlite3 -readonly ... data/orders.db' queries; agent states the main risk (mobile 3.1-3.3 send only an amount, mixed VIP spellings, deploy script stops the service)."},
+      {"t": 27.0, "text": "Final summary: 'Saved: docs/cr/CR-2026-014/01-impact-analysis.md' - impact spans API, refund rules, database, web, notifications, policy, tests and operations; local data has mixed VIP spellings (five delivered orders enter the extended window); key risks; Decision 1 and Decision 2 for a human. Caption: 'Analysis done - impact, data anomalies and decisions needed are summarized'."}
+    ]
+  },
+  "cp2_design": {
+    "duration": 42.0,
+    "sources": ["slide-stage2.mp4"],
+    "poster": "cp2_design_poster.png",
+    "poster_time": 40.3,
+    "segments": [
+      {"source": "slide-stage2.mp4", "src_start": 2.4, "src_end": 6.2, "speed": 2, "out_start": 0.0, "out_end": 1.9, "note": "/agent solution-architect typed and selected (2x)"},
+      {"source": "slide-stage2.mp4", "src_start": 6.2, "src_end": 19.4, "speed": 3, "out_start": 1.9, "out_end": 6.3, "note": "design request typed (3x)"},
+      {"source": "slide-stage2.mp4", "src_start": 19.7, "src_end": 20.5, "speed": 1, "out_start": 6.3, "out_end": 7.1, "note": "Enter; agent starts reading (8x in source)"},
+      {"source": "slide-stage2.mp4", "src_start": 21.3, "src_end": 24.7, "speed": 1, "out_start": 7.1, "out_end": 10.5, "note": "decision 1 prompt (idle wait 24.7-28.2 cut)"},
+      {"source": "slide-stage2.mp4", "src_start": 28.2, "src_end": 29.7, "speed": 1, "out_start": 10.5, "out_end": 12.0, "note": "human selects 'Other (type your answer)'"},
+      {"source": "slide-stage2.mp4", "src_start": 29.7, "src_end": 44.1, "speed": 2, "out_start": 12.0, "out_end": 19.2, "note": "human types own answer (2x)"},
+      {"source": "slide-stage2.mp4", "src_start": 44.1, "src_end": 46.6, "speed": 1, "out_start": 19.2, "out_end": 21.7, "note": "typed answer complete, Enter"},
+      {"source": "slide-stage2.mp4", "src_start": 47.5, "src_end": 50.0, "speed": 1, "out_start": 21.7, "out_end": 24.2, "note": "decision 2 prompt (idle wait 50.0-53.2 cut)"},
+      {"source": "slide-stage2.mp4", "src_start": 53.2, "src_end": 54.2, "speed": 1, "out_start": 24.2, "out_end": 25.2, "note": "decision 2 answered"},
+      {"source": "slide-stage2.mp4", "src_start": 55.5, "src_end": 58.0, "speed": 1, "out_start": 25.2, "out_end": 27.7, "note": "decision 3 prompt (idle wait 58.0-60.8 cut)"},
+      {"source": "slide-stage2.mp4", "src_start": 60.8, "src_end": 61.8, "speed": 1, "out_start": 27.7, "out_end": 28.7, "note": "decision 3 answered"},
+      {"source": "slide-stage2.mp4", "src_start": 68.6, "src_end": 72.9, "speed": 1, "out_start": 28.7, "out_end": 33.0, "note": "design document written/saved (8x in source; 61.8-68.6 cut)"},
+      {"source": "slide-stage2.mp4", "src_start": 73.0, "src_end": 77.2, "speed": 1, "out_start": 33.0, "out_end": 37.2, "note": "DESIGN approval pop-up (gate 1) (idle wait 77.2-79.4 cut)"},
+      {"source": "slide-stage2.mp4", "src_start": 79.4, "src_end": 80.7, "speed": 1, "out_start": 37.2, "out_end": 38.5, "note": "human approves"},
+      {"source": "slide-stage2.mp4", "src_start": 80.7, "src_end": 84.2, "speed": 1, "out_start": 38.5, "out_end": 42.0, "note": "design approved - code changes now allowed"}
+    ],
+    "key_moments": {
+      "human_decision_1_prompt": [7.5, 21.6],
+      "human_decision_1_select_other": [10.5, 12.0],
+      "human_decision_1_typed_answer_typing_2x": [12.0, 19.2],
+      "human_decision_1_typed_answer_complete": [19.2, 21.6],
+      "human_decision_2_prompt": [22.0, 25.2],
+      "human_decision_3_prompt": [25.4, 28.8],
+      "design_document_written": [28.7, 33.0],
+      "gate_1_design_approval_popup": [33.0, 38.3],
+      "design_approved_state": [38.4, 42.0]
+    },
+    "facts": [
+      {"t": 5.5, "text": "Request typed to solution-architect: 'Design this based on the impact analysis. Ask me about any decisions that need to be made.' Caption: 'The Solution Architect agent designs it and asks a human about key decisions'."},
+      {"t": 9.0, "text": "Decision 1 (amber bar 'Human approval needed - A human decides'): 'How should legacy mobile apps handle mandatory refund reasons? I recommend enforcing reasons at activation...' with options 'Enforce reasons at activation...', 'Stage mobile updates before enforcing reasons...', 'Other (type your answer)'. The human later picks Other and types: 'Allow legacy app versions (3.1-3.3) to omit the reason until 2026-12-01 with a warning log, then make it required.' (full answer readable 19.2-21.6)."},
+      {"t": 35.0, "text": "Gate 1: 'Hook permission request - Design approval: Have you reviewed the design document (docs/cr/CR-2026-014/02-design.md)? Approving starts the implementation phase, and if the design changes after approval, the approval is automatically invalidated.' Caption: 'The system requires approval - if the design changes after approval it is automatically invalidated'. Decisions 2 (VIP tier normalization) and 3 (User-Agent allowlist + 2026-12-01 cutoff) were answered with the recommended options earlier (22.0-28.8)."},
+      {"t": 40.5, "text": "'Design saved in docs/cr/CR-2026-014/02-design.md and approved by Gildong Hong (Ops Lead) ... Design approval complete -> next stage: app-developer'. Caption: 'Design approved - code changes are now allowed'."}
+    ]
+  },
+  "cp3_build_test": {
+    "duration": 37.4,
+    "sources": ["slide-stage3.mp4", "slide-stage4.mp4"],
+    "poster": "cp3_build_test_poster.png",
+    "poster_time": 35.8,
+    "segments": [
+      {"source": "slide-stage3.mp4", "src_start": 1.4, "src_end": 5.6, "speed": 2, "out_start": 0.0, "out_end": 2.1, "note": "/agent app-developer typed and selected (2x)"},
+      {"source": "slide-stage3.mp4", "src_start": 6.0, "src_end": 9.9, "speed": 1, "out_start": 2.1, "out_end": 6.0, "note": "'Implement the approved design.' typed, Enter"},
+      {"source": "slide-stage3.mp4", "src_start": 10.3, "src_end": 13.1, "speed": 1, "out_start": 6.0, "out_end": 8.8, "note": "developer verifies design approval, reads 02-design.md (8x in source)"},
+      {"source": "slide-stage3.mp4", "src_start": 19.3, "src_end": 21.1, "speed": 1, "out_start": 8.8, "out_end": 10.6, "note": "creates DB migration, edits business rules (8x in source)"},
+      {"source": "slide-stage3.mp4", "src_start": 25.3, "src_end": 27.1, "speed": 1, "out_start": 10.6, "out_end": 12.4, "note": "edits app/UI/e-mail/policy, runs lint + tests (8x in source)"},
+      {"source": "slide-stage3.mp4", "src_start": 58.2, "src_end": 63.8, "speed": 1, "out_start": 12.4, "out_end": 18.0, "note": "commit; 'Implemented and committed' summary (26 tests)"},
+      {"source": "slide-stage4.mp4", "src_start": 1.4, "src_end": 5.4, "speed": 2, "out_start": 18.0, "out_end": 20.0, "note": "/agent qa-engineer typed and selected (2x)"},
+      {"source": "slide-stage4.mp4", "src_start": 5.4, "src_end": 13.5, "speed": 3, "out_start": 20.0, "out_end": 22.7, "note": "test request typed (3x)"},
+      {"source": "slide-stage4.mp4", "src_start": 13.5, "src_end": 14.7, "speed": 1, "out_start": 22.7, "out_end": 23.9, "note": "Enter; QA agent starts"},
+      {"source": "slide-stage4.mp4", "src_start": 40.3, "src_end": 42.3, "speed": 1, "out_start": 23.9, "out_end": 25.9, "note": "QA writes tests (8x in source)"},
+      {"source": "slide-stage4.mp4", "src_start": 49.2, "src_end": 51.2, "speed": 1, "out_start": 25.9, "out_end": 27.9, "note": "lint + full coverage suite run (8x in source)"},
+      {"source": "slide-stage4.mp4", "src_start": 61.3, "src_end": 65.0, "speed": 1, "out_start": 27.9, "out_end": 31.6, "note": "suite passes (74 added cases, 99%); test report being written (8x in source)"},
+      {"source": "slide-stage4.mp4", "src_start": 71.2, "src_end": 77.0, "speed": 1, "out_start": 31.6, "out_end": 37.4, "note": "commit; final result 100 passed, report written"}
+    ],
+    "key_moments": {
+      "build_result_summary_26_tests": [13.5, 18.0],
+      "qa_writes_tests": [23.9, 25.9],
+      "qa_runs_lint_and_coverage_suite": [25.9, 27.9],
+      "qa_suite_passes_74_added_99pct": [27.9, 31.6],
+      "test_result_summary_100_passed": [31.8, 37.4]
+    },
+    "facts": [
+      {"t": 4.5, "text": "Prompt to app-developer: 'Implement the approved design.' Caption: 'The Developer agent implements exactly what was approved'."},
+      {"t": 16.0, "text": "'Implemented and committed as dde25f9: 14 files, including CR documents. VIP refunds: 60 days; standard: 30 days; amounts above KRW 1,000,000 await approval... Checks passed: lint/format, 26 tests, 136 focused assertions and JavaScript checks. Handoff: docs/cr/CR-2026-014/03-implementation-notes.md. Next: qa-engineer; no deployment performed.' Caption from 15.0: 'Implementation done - the changes are saved as commits'."},
+      {"t": 24.5, "text": "Separate agent qa-engineer (caption 'Writing and running boundary tests for each requirement (sped up)', 8x badge): 'Edit tests/test_refunds.py', 'Create tests/test_migrations.py'; then 'Lint added tests and run the required full coverage suite'."},
+      {"t": 35.0, "text": "'Added 74 regression cases; the full suite passes: 100 passed, 0 failed, 99% coverage. Covers policy boundaries, legacy cutoff, approvals, notifications/audit, UI behavior and migration compatibility. Defects found: None. Production code unchanged. Report: docs/cr/CR-2026-014/04-test-report.md. Committed as f33fb57. Next stage: code-reviewer.' Caption from 33.2: 'Testing done - a report with a requirements traceability table was created'."}
+    ]
+  },
+  "cp4_review": {
+    "duration": 29.7,
+    "sources": ["slide-stage5.mp4"],
+    "poster": "cp4_review_poster.png",
+    "poster_time": 28.1,
+    "segments": [
+      {"source": "slide-stage5.mp4", "src_start": 1.4, "src_end": 5.4, "speed": 2, "out_start": 0.0, "out_end": 2.0, "note": "/agent code-reviewer typed and selected (2x)"},
+      {"source": "slide-stage5.mp4", "src_start": 5.4, "src_end": 14.7, "speed": 3, "out_start": 2.0, "out_end": 5.1, "note": "review request typed (3x)"},
+      {"source": "slide-stage5.mp4", "src_start": 14.7, "src_end": 16.2, "speed": 1, "out_start": 5.1, "out_end": 6.6, "note": "Enter; review starts"},
+      {"source": "slide-stage5.mp4", "src_start": 16.3, "src_end": 19.9, "speed": 1, "out_start": 6.6, "out_end": 10.2, "note": "security-review sub-agent started; reads design/standards/checklist (8x in source)"},
+      {"source": "slide-stage5.mp4", "src_start": 24.8, "src_end": 27.4, "speed": 1, "out_start": 10.2, "out_end": 12.8, "note": "background security review completed (8x in source)"},
+      {"source": "slide-stage5.mp4", "src_start": 32.8, "src_end": 35.2, "speed": 1, "out_start": 12.8, "out_end": 15.2, "note": "writes 05-review-report.md (8x in source)"},
+      {"source": "slide-stage5.mp4", "src_start": 38.2, "src_end": 43.9, "speed": 1, "out_start": 15.2, "out_end": 20.9, "note": "reviewer is read-only (red Denied line); CODE approval pop-up (gate 2)"},
+      {"source": "slide-stage5.mp4", "src_start": 46.2, "src_end": 47.6, "speed": 1, "out_start": 20.9, "out_end": 22.3, "note": "pop-up still up, human approves (idle wait 43.9-46.2 cut)"},
+      {"source": "slide-stage5.mp4", "src_start": 47.6, "src_end": 55.0, "speed": 1, "out_start": 22.3, "out_end": 29.7, "note": "review done: 0 Blocker / 0 Major / 0 Minor; code approval recorded"}
+    ],
+    "key_moments": {
+      "review_in_progress_8x": [6.6, 15.2],
+      "red_denied_by_preToolUse_hook_line_reviewer_is_read_only": [15.8, 17.8],
+      "red_denied_line_visible_again_after_popup": [23.2, 24.0],
+      "gate_2_code_approval_popup": [18.0, 23.1],
+      "approved_caption_review_done": [23.2, 29.7],
+      "result_summary_0_blocker_0_major_0_minor": [24.0, 29.7]
+    },
+    "facts": [
+      {"t": 3.0, "text": "Request typed to code-reviewer: 'Review the changes. If there are no problems, request code approval.' Caption: 'The Reviewer agent checks the design, company standards and security' (picker shows 'Read-only reviewer that reviews the change (branch diff) against the design document and company standards')."},
+      {"t": 8.0, "text": "Caption 'Checking the changes against the design and the security checklist (sped up)', 8x badge: a security-review sub-agent is started in the background; reads 02-design.md, 04-test-report.md, coding-standards.md, db-migration-guide.md, release-policy.md, security-checklist.md; runs git diff main...HEAD and the lint/format checks."},
+      {"t": 20.0, "text": "Gate 2: 'Hook permission request - Code approval: Have you reviewed the code review and test results? Only code whose hash matches the approved code can be deployed.' (Tool: bash, command scripts/gate.py request code CR-2026-014). Caption: 'Only code whose hash matches the approved code can be deployed'. Just before (15.8-17.8) a red line shows 'Denied by preToolUse hook: The [Reviewer] agent is read-only. File changes, git changes and install commands...'."},
+      {"t": 27.0, "text": "'Recommend approval - 0 Blocker / 0 Major / 0 Minor. Design, security and migration checks passed.' Table: no introduced vulnerabilities found; saved docs/cr/CR-2026-014/05-review-report.md; '2 Code approval recorded and verified - Gildong Hong (Ops Lead). Next: release-manager.' Caption: 'Review done - a human approved the code'."}
+    ]
+  },
+  "cp5_deploy": {
+    "duration": 34.2,
+    "sources": ["slide-stage6.mp4"],
+    "poster": "cp5_deploy_poster.png",
+    "poster_time": 32.6,
+    "segments": [
+      {"source": "slide-stage6.mp4", "src_start": 1.4, "src_end": 5.4, "speed": 2, "out_start": 0.0, "out_end": 2.0, "note": "/agent release-manager typed and selected (2x)"},
+      {"source": "slide-stage6.mp4", "src_start": 5.6, "src_end": 17.9, "speed": 3, "out_start": 2.0, "out_end": 6.1, "note": "release request typed (3x)"},
+      {"source": "slide-stage6.mp4", "src_start": 17.9, "src_end": 19.6, "speed": 1, "out_start": 6.1, "out_end": 7.8, "note": "Enter; release starts"},
+      {"source": "slide-stage6.mp4", "src_start": 19.6, "src_end": 22.4, "speed": 1, "out_start": 7.8, "out_end": 10.6, "note": "agent checks code approval, plans merge/release (8x in source)"},
+      {"source": "slide-stage6.mp4", "src_start": 25.1, "src_end": 28.1, "speed": 1, "out_start": 10.6, "out_end": 13.6, "note": "code approval valid; preparing v1.1.0 from v1.0.0 (8x in source)"},
+      {"source": "slide-stage6.mp4", "src_start": 31.5, "src_end": 34.3, "speed": 1, "out_start": 13.6, "out_end": 16.4, "note": "release plan written, v1.1.0 tag, staging deploy (8x in source)"},
+      {"source": "slide-stage6.mp4", "src_start": 35.8, "src_end": 42.6, "speed": 1, "out_start": 16.4, "out_end": 23.2, "note": "staging verification; PRODUCTION approval pop-up (gate 3)"},
+      {"source": "slide-stage6.mp4", "src_start": 44.7, "src_end": 46.4, "speed": 1, "out_start": 23.2, "out_end": 24.9, "note": "pop-up still up (idle wait 42.6-44.7 cut)"},
+      {"source": "slide-stage6.mp4", "src_start": 46.4, "src_end": 49.1, "speed": 1, "out_start": 24.9, "out_end": 27.6, "note": "human approves; staging verified, smoke tests 6/6"},
+      {"source": "slide-stage6.mp4", "src_start": 52.6, "src_end": 59.2, "speed": 1, "out_start": 27.6, "out_end": 34.2, "note": "production deployed, rollback ready (49.1-52.6 cut)"}
+    ],
+    "key_moments": {
+      "release_plan_and_staging_deploy_8x": [10.6, 20.2],
+      "gate_3_production_approval_popup": [20.2, 25.5],
+      "staging_verified_smoke_tests_6_of_6": [25.6, 27.6],
+      "production_deployed_rollback_ready_summary": [27.6, 34.2]
+    },
+    "facts": [
+      {"t": 4.0, "text": "Request typed to release-manager: 'Merge into main, deploy to staging and verify, then proceed to the production deployment.' Caption: 'The Release Manager agent prepares merge -> staging -> production'."},
+      {"t": 14.5, "text": "Caption 'Merge - release plan - staging deploy - smoke test (sped up)', 8x badge: 'Code approval is valid. I'm preparing v1.1.0 from v1.0.0...', 'Edit VERSION / Create docs/cr/CR-2026-014/06-release-plan.md', local v1.1.0 tag, 'Deploy approved v1.1.0 to staging' (scripts/deploy.sh staging)."},
+      {"t": 22.5, "text": "Gate 3: 'Hook permission request - Production deploy approval: This deploys to the production environment and directly affects the live service, so explicit approval from the owner is required. (The script re-verifies the staging smoke test and the code approval record.)' Command: scripts/deploy.sh production. Caption: 'Production is deployed only after a human approves (enforced by a hook)'."},
+      {"t": 30.0, "text": "'Staging v1.1.0 is verified at http://127.0.0.1:8101. Lint and all 100 tests passed; staging smoke tests passed 6/6 ... the v1.0.0 rollback target is retained.' Final line: 'Staging and human-approved production deployment succeeded - v1.1.0 http://127.0.0.1:8100 - Rollback: scripts/deploy.sh production --rollback (coordinate policy containment for v1.0.0).' Caption: 'Production deployment done - the rollback method is ready'."}
+    ]
+  },
+  "cp7_guardrail": {
+    "duration": 42.0,
+    "sources": ["slide-guard.mp4"],
+    "poster": "cp7_guardrail_poster.png",
+    "poster_time": 40.4,
+    "segments": [
+      {"source": "slide-guard.mp4", "src_start": 3.0, "src_end": 6.9, "speed": 1, "out_start": 0.0, "out_end": 3.9, "note": "quick-fixer (rule-unaware) selected"},
+      {"source": "slide-guard.mp4", "src_start": 7.0, "src_end": 17.6, "speed": 3, "out_start": 3.9, "out_end": 7.43, "note": "request 1 typed (3x)"},
+      {"source": "slide-guard.mp4", "src_start": 17.6, "src_end": 25.6, "speed": 1, "out_start": 7.43, "out_end": 15.43, "note": "attempt 1: edit code before design approval -> BLOCKED banner"},
+      {"source": "slide-guard.mp4", "src_start": 27.7, "src_end": 48.8, "speed": 3, "out_start": 15.43, "out_end": 22.47, "note": "request 2 typed (3x): edit security standard (banner 1 tail 25.6-27.7 cut)"},
+      {"source": "slide-guard.mp4", "src_start": 48.8, "src_end": 55.8, "speed": 1, "out_start": 22.47, "out_end": 29.47, "note": "attempt 2: edit standards document -> BLOCKED banner"},
+      {"source": "slide-guard.mp4", "src_start": 57.2, "src_end": 72.4, "speed": 3, "out_start": 29.47, "out_end": 34.53, "note": "request 3 typed (3x): git push"},
+      {"source": "slide-guard.mp4", "src_start": 72.4, "src_end": 79.9, "speed": 1, "out_start": 34.53, "out_end": 42.03, "note": "attempt 3: git push -> BLOCKED banner"}
+    ],
+    "key_moments": {
+      "blocked_banner_1_code_cannot_be_modified_before_design_approval": [10.0, 15.4],
+      "blocked_banner_2_agents_cannot_modify_company_standards": [23.4, 29.5],
+      "blocked_banner_3_git_push_is_a_prohibited_command": [35.0, 42.0]
+    },
+    "facts": [
+      {"t": 3.0, "text": "'/agent quick-fixer (Demo) An agent that does what it is told right away, without checking any rules.' -> 'Selected custom agent: quick-fixer'. Caption: 'We tell an agent that does not know the rules to 'change the code without approval''."},
+      {"t": 11.0, "text": "Attempt 1 - request: 'Change the 30-day constant in app/services/refund_policy.py to 60.' Red '[x] Edit app/services/refund_policy.py ... Denied by preToolUse hook: Design approval' and red banner 'Blocked by the system - code cannot be modified before design approval' (sub-line: 'Even if the AI tries, the hook checks right before the tool call and denies it'); agent: 'The change was blocked... No files were changed.'"},
+      {"t": 26.0, "text": "Attempt 2 - request: 'Add an item 'S8 - Review dependency updates monthly' at the bottom of docs/standards/security-checklist.md.' Red 'Denied by preToolUse hook: Protected path (docs/standards/)' and banner 'Blocked by the system - agents cannot modify company standards' (sub-line: 'Standards, agent definitions, hooks and approval records are protected paths')."},
+      {"t": 38.0, "text": "Attempt 3 - request: 'Push to main right now with git push origin main, without a review.' Red 'Denied by preToolUse hook: git push is prohibited by policy.' and banner 'Blocked by the system - git push is a prohibited command' (sub-line: 'Dangerous commands are stopped by rules, not by the AI's judgment'); agent: 'The push was blocked by repository policy... nothing was pushed.'"}
+    ]
+  }
+}

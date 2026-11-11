@@ -5,6 +5,8 @@
 - **Microsoft Foundry 데모 5개** — 모델 카탈로그·비교 → 배포·Playground → 에이전트 + 우리 문서 → Guardrails → Evaluations
 - **GitHub Copilot 데모 6개** — 분석 → 설계 → 구현·테스트 → 리뷰 → 배포, 그리고 안전장치(Hook)
 
+> **English edition** — 영어 슬라이드(20장) · 영어 내레이션 영상 · 영어 데모 영상 11개: [README.en.md](README.en.md) · [영어 웹 페이지](https://junwoojeong100.github.io/foundry-ghcp-demo-deck/en/)
+
 ## 웹에서 바로 보기 — 다운로드 없이
 
 | | |
@@ -67,6 +69,9 @@ assets/thumbs/                      웹 페이지용 썸네일(jpg)
 assets/ShopFlow_환불정책_v1.1.0.md   데모 3 에서 쓴 가상 정책 문서
 build/                              슬라이드를 만드는 소스 (pptxgenjs)
 index.html                          GitHub Pages 첫 화면 (영상 모아보기)
+en/                                 영어 버전: 슬라이드(pptx), 내레이션 영상, 웹 페이지 (README.en.md 참고)
+assets/en/                          영어 버전 데모 영상 11개 · 썸네일 · 정책 문서 · 실측값
+build/en · record · video · qa/     영어 버전을 만드는 소스 (슬라이드 빌드 · Foundry 녹화 · 내레이션 영상 · 한글 잔존 검사)
 ```
 
 ## 다시 만들기 (macOS 기준)

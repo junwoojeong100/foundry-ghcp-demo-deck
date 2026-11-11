@@ -3,7 +3,9 @@
   "private": true,
   "description": "Builds ko/Microsoft_Foundry_GitHub_Copilot_Demo_Deck_KO.pptx (Microsoft Foundry x GitHub Copilot demo deck) with pptxgenjs",
   "scripts": {
-    "build": "node build.js out/deck.pptx && node fix_pptx.js out/deck.pptx"
+    "build": "node build.js out/deck.pptx && node fix_pptx.js out/deck.pptx",
+    "prep:en": "DEMO_LANG=en python3 prep_assets.py",
+    "build:en": "DEMO_LANG=en node en/build.js out/deck_en.pptx && DEMO_LANG=en node fix_pptx.js out/deck_en.pptx"
   },
   "dependencies": {
     "jszip": "^3.10.1",

@@ -1,14 +1,42 @@
 #!/usr/bin/env python3
-"""슬라이드용 이미지 자산 생성: 어두운 배경(글로우), 1280px 포스터, 둥근 모서리 표지 이미지, 데모 맵 썸네일."""
+"""슬라이드용 이미지 자산 생성: 어두운 배경(글로우), 1280px 포스터, 둥근 모서리 표지 이미지, 데모 맵 썸네일.
+
+DEMO_LANG=en (English edition): reads the clip posters from assets/en/clips and writes the images to assets/en/slide.
+A missing English poster falls back to the Korean one with a WARNING (set STRICT_EN=1 to fail instead).
+"""
+import os
+import sys
 from pathlib import Path
 from PIL import Image, ImageDraw, ImageOps, ImageChops
 
 ROOT = Path(__file__).resolve().parent.parent
-CLIPS = ROOT / "assets" / "clips"
-OUT = ROOT / "assets" / "slide"
+LANG = (os.environ.get("DEMO_LANG") or "ko").strip().lower()
+if LANG not in ("ko", "en"):
+    sys.exit(f'Unsupported DEMO_LANG "{LANG}" (use "ko" or "en")')
+STRICT_EN = os.environ.get("STRICT_EN") == "1"
+KO_CLIPS = ROOT / "assets" / "clips"
+CLIPS = ROOT / "assets" / "en" / "clips" if LANG == "en" else KO_CLIPS
+OUT = ROOT / "assets" / "en" / "slide" if LANG == "en" else ROOT / "assets" / "slide"
 OUT.mkdir(parents=True, exist_ok=True)
 
 W, H = 1280, 720
+
+
+_warned = set()
+
+
+def poster_path(base):
+    """Path of a clip's poster. English edition: fall back to the Korean poster (with a WARNING) when the English one is missing."""
+    p = CLIPS / f"{base}_poster.png"
+    if LANG == "en" and not p.exists():
+        msg = f"English poster missing: {p.relative_to(ROOT)}"
+        if STRICT_EN:
+            sys.exit(f"ERROR (STRICT_EN=1): {msg}")
+        if base not in _warned:
+            _warned.add(base)
+            print(f"WARNING: {msg} -> using the KOREAN poster {KO_CLIPS.relative_to(ROOT)}/{base}_poster.png (placeholder only, do not ship)", file=sys.stderr)
+        return KO_CLIPS / f"{base}_poster.png"
+    return p
 
 
 def glow_bg(name, base, glows):
@@ -37,7 +65,7 @@ POSTERS = {
     "c1": "cp1_analyze", "c2": "cp2_design", "c3": "cp3_build_test", "c4": "cp4_review", "c5": "cp5_deploy", "c7": "cp7_guardrail",
 }
 for key, base in POSTERS.items():
-    im = Image.open(CLIPS / f"{base}_poster.png").convert("RGB")
+    im = Image.open(poster_path(base)).convert("RGB")
     im.resize((1280, round(1280 * im.height / im.width)), Image.LANCZOS).save(OUT / f"poster_{key}.png", optimize=True)
     t = im.resize((640, round(640 * im.height / im.width)), Image.LANCZOS)
     t.save(OUT / f"thumb_{key}.png", optimize=True)
@@ -55,10 +83,12 @@ def rounded(src, dst, width, radius):
     out.save(dst, optimize=True)
 
 
-rounded(CLIPS / "f3_agent_poster.png", OUT / "cover_foundry.png", 1400, 26)
-rounded(CLIPS / "cp7_guardrail_poster.png", OUT / "cover_copilot.png", 1400, 26)
+rounded(poster_path("f3_agent"), OUT / "cover_foundry.png", 1400, 26)
+rounded(poster_path("cp7_guardrail"), OUT / "cover_copilot.png", 1400, 26)
 
-# 포털 왼쪽 메뉴(Create/Optimize 영역) 잘라내기 — 개요 슬라이드용
-nav = Image.open(CLIPS / "f1_catalog_poster.png").convert("RGB").crop((0, 86, 364, 1010))
+# 포털 왼쪽 메뉴(Create/Optimize 영역) 잘라내기 — 개요 슬라이드용 (1920x1080 포스터 기준 좌표를 포스터 크기에 맞춰 환산)
+nav_src = Image.open(poster_path("f1_catalog")).convert("RGB")
+sx, sy = nav_src.width / 1920, nav_src.height / 1080
+nav = nav_src.crop((0, round(86 * sy), round(364 * sx), round(1010 * sy)))
 nav.save(OUT / "foundry_nav.png", optimize=True)
 print("assets:", sorted(p.name for p in OUT.iterdir()))

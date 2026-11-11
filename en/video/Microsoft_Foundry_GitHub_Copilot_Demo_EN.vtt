@@ -1,0 +1,388 @@
+WEBVTT
+
+00:00:00.450 --> 00:00:03.537
+Today we skip the slides and
+watch real screen recordings.
+
+00:00:03.857 --> 00:00:06.936
+Eleven demos, from choosing
+a model to shipping a change,
+
+00:00:06.936 --> 00:00:09.312
+and the safeguards that
+keep it trustworthy.
+
+00:00:10.462 --> 00:00:12.423
+Part one is Microsoft Foundry.
+
+00:00:12.743 --> 00:00:16.455
+Choose a model, deploy it, build
+an agent on your own document,
+
+00:00:16.455 --> 00:00:19.343
+protect it with guardrails,
+and then evaluate it.
+
+00:00:20.493 --> 00:00:25.011
+The catalog puts models from
+many providers in one place:
+
+00:00:25.011 --> 00:00:30.006
+OpenAI, Anthropic, Microsoft,
+Meta, Mistral, DeepSeek and more.
+
+00:00:31.043 --> 00:00:34.682
+In the Models tab we search and
+filter. Here, a search for Claude
+
+00:00:34.682 --> 00:00:38.321
+lists seventeen models, and we
+can narrow them down by publisher.
+
+00:00:41.643 --> 00:00:46.007
+Then Compare models. Three models
+side by side: quality, safety,
+
+00:00:46.007 --> 00:00:49.827
+estimated cost and throughput,
+plus supported endpoints.
+
+00:00:52.043 --> 00:00:55.183
+Swap a model in the dropdown
+and the numbers update.
+
+00:00:55.183 --> 00:00:59.833
+These are benchmark values. For your
+own task, you evaluate, as in demo five.
+
+00:01:02.593 --> 00:01:07.223
+Pick a model and deploy it.
+Here we use gpt-6.1-sol.
+
+00:01:11.943 --> 00:01:15.276
+Default settings means Global
+Standard with the default quota.
+
+00:01:15.276 --> 00:01:17.373
+Custom settings gives you more control.
+
+00:01:18.743 --> 00:01:21.982
+The Playground opens right
+away. We ask for an apology to a
+
+00:01:21.982 --> 00:01:25.222
+customer whose delivery is
+late, and the answer comes back.
+
+00:01:25.743 --> 00:01:29.765
+Continue in code shows a Python
+sample that signs in with Entra ID.
+
+00:01:29.765 --> 00:01:33.727
+API key authentication is disabled,
+so no key goes into your code.
+
+00:01:35.259 --> 00:01:38.447
+Next, an agent that answers
+from our own document.
+
+00:01:38.447 --> 00:01:41.443
+In Agents, choose New
+agent and give it a name.
+
+00:01:45.209 --> 00:01:48.892
+We write its role and rules as plain
+instructions, and pick a model.
+
+00:01:57.809 --> 00:02:00.395
+Then we upload the refund
+policy as knowledge.
+
+00:02:00.395 --> 00:02:04.273
+Foundry builds a vector index and
+gives the agent a File search tool.
+
+00:02:13.009 --> 00:02:17.363
+Now the test. A VIP customer asks about
+a purchase made forty-five days ago.
+
+00:02:17.363 --> 00:02:19.769
+VIP members have sixty days, and the agent
+
+00:02:19.769 --> 00:02:22.348
+cites the policy section
+and the source file.
+
+00:02:23.009 --> 00:02:26.612
+And KRW 1,500,000? Not
+processed immediately.
+
+00:02:26.612 --> 00:02:30.774
+Above KRW 1,000,000 needs
+admin approval: section 3.
+
+00:02:31.924 --> 00:02:34.933
+Guardrails. The default
+guardrail, DefaultV2,
+
+00:02:34.933 --> 00:02:37.741
+applies to every deployment automatically.
+
+00:02:38.061 --> 00:02:41.031
+Its policy covers jailbreak
+attempts on user input,
+
+00:02:41.031 --> 00:02:43.302
+content safety, and protected material.
+
+00:02:43.622 --> 00:02:49.410
+Now a classic jailbreak prompt: pretend
+to be STAN, a model that never refuses.
+
+00:02:53.074 --> 00:02:56.027
+Blocked at the input,
+before the model answers.
+
+00:02:56.027 --> 00:02:58.226
+The risk type, jailbreak, is shown.
+
+00:02:59.376 --> 00:03:03.506
+The last Foundry demo is Evaluations.
+We choose the agent we just built.
+
+00:03:05.326 --> 00:03:09.539
+Scope and frequency:
+individual turns, run one time.
+
+00:03:11.126 --> 00:03:14.364
+For test data, Foundry reads
+the agent's instructions and
+
+00:03:14.364 --> 00:03:17.943
+generates fifteen questions. We
+add a hint about what to cover.
+
+00:03:20.326 --> 00:03:24.989
+Then the evaluators: tool use, output
+quality, and four safety checks.
+
+00:03:26.526 --> 00:03:30.715
+Review and submit. A few minutes later the
+run is complete, and the waiting is cut.
+
+00:03:34.326 --> 00:03:39.341
+Tool use passed fourteen of fifteen, and
+every safety check passed all fifteen.
+
+00:03:39.341 --> 00:03:44.229
+Output quality failed all fifteen. That
+is the weak spot to open, row by row.
+
+00:03:46.876 --> 00:03:50.741
+Part two is GitHub Copilot, and
+this time we hand work over.
+
+00:03:51.061 --> 00:03:54.607
+One business change request,
+a refund policy change,
+
+00:03:54.607 --> 00:03:57.540
+flows through custom
+agents, one per stage.
+
+00:03:57.860 --> 00:04:02.043
+People approve in three places, and a hook
+blocks anything that breaks the rules.
+
+00:04:03.193 --> 00:04:07.255
+The change request goes to a custom
+Copilot agent, the Change Analyst.
+
+00:04:13.743 --> 00:04:17.361
+It reads the code, the
+documents and the real database,
+
+00:04:17.361 --> 00:04:19.729
+read-only. The long wait is sped up.
+
+00:04:24.743 --> 00:04:28.836
+Out comes an impact analysis:
+areas affected, data anomalies,
+
+00:04:28.836 --> 00:04:32.594
+and decisions for a human.
+Nothing has been changed yet.
+
+00:04:33.744 --> 00:04:36.736
+Next, the Solution Architect
+agent writes the design,
+
+00:04:36.736 --> 00:04:39.898
+and it is told to ask about
+any decision that needs one.
+
+00:04:41.494 --> 00:04:46.146
+Here it stops and asks. It offers a
+recommendation, and the human decides.
+
+00:04:46.146 --> 00:04:50.610
+In this run, one answer was typed in
+instead of the recommended option.
+
+00:05:05.894 --> 00:05:10.748
+Then the first gate: design approval,
+tied to a hash of the design document.
+
+00:05:10.748 --> 00:05:13.941
+If the design changes
+later, the approval is void.
+
+00:05:15.744 --> 00:05:18.103
+With the design approved, the Developer
+
+00:05:18.103 --> 00:05:20.765
+agent implements exactly
+that, then commits.
+
+00:05:21.894 --> 00:05:25.228
+It changes the database
+migration, the business rules,
+
+00:05:25.228 --> 00:05:29.426
+the screen and the e-mail wording
+together. This stretch is sped up.
+
+00:05:33.894 --> 00:05:37.700
+A separate Tester agent then
+verifies the work. It cannot change
+
+00:05:37.700 --> 00:05:41.446
+production code. It writes and
+runs tests, and reports defects.
+
+00:05:43.294 --> 00:05:47.918
+74 new tests, all 100
+passing, at 99% coverage.
+
+00:05:53.143 --> 00:05:57.414
+The Reviewer agent compares the changes
+with the design, the company standards and
+
+00:05:57.414 --> 00:06:01.477
+the security checklist, and hands the
+deep security scan to a dedicated agent.
+
+00:06:07.694 --> 00:06:09.964
+Notice the red line: the reviewer tried to
+
+00:06:09.964 --> 00:06:12.344
+commit its own report,
+and a hook denied it.
+
+00:06:12.994 --> 00:06:16.991
+Then the second gate: code approval,
+tied to the hash of the reviewed code.
+
+00:06:17.311 --> 00:06:22.913
+Zero blockers, zero major,
+zero minor. A human approves.
+
+00:06:24.063 --> 00:06:27.788
+The Release Manager agent
+merges, writes the release
+
+00:06:27.788 --> 00:06:31.082
+plan for v1.1.0, and
+deploys to staging first.
+
+00:06:34.613 --> 00:06:37.639
+Then a smoke test. This
+stretch is sped up.
+
+00:06:45.213 --> 00:06:48.891
+The third gate: production deploy
+approval. The pop-up appears
+
+00:06:48.891 --> 00:06:52.214
+right before the deploy script
+runs, enforced by a hook.
+
+00:06:52.534 --> 00:06:57.284
+Production is live. Staging passed six
+of six checks, and rollback is ready.
+
+00:06:58.434 --> 00:07:01.397
+Now the opposite test. This
+agent does not know the rules,
+
+00:07:01.397 --> 00:07:04.003
+and we tell it to change
+the code without approval.
+
+00:07:10.584 --> 00:07:14.025
+Blocked by the system: no code
+changes before design approval.
+
+00:07:15.184 --> 00:07:17.768
+Next, we tell it to edit the
+company security standard.
+
+00:07:20.984 --> 00:07:23.920
+Blocked again. Standards,
+agent definitions,
+
+00:07:23.920 --> 00:07:26.656
+hooks and approval records are protected.
+
+00:07:29.984 --> 00:07:34.139
+Finally, a dangerous command:
+push straight to main. Blocked.
+
+00:07:34.139 --> 00:07:37.818
+Rules like this are enforced
+by code, not by a prompt.
+
+00:07:40.467 --> 00:07:44.951
+The numbers from the recorded session:
+thirty-eight minutes across seven stages,
+
+00:07:44.951 --> 00:07:48.371
+six human interventions, three
+approvals and three decisions,
+
+00:07:48.691 --> 00:07:53.605
+tests up from twenty-six to one hundred,
+and about three dollars forty of AI usage.
+
+00:07:53.925 --> 00:07:58.484
+It is one run of a fictional store, so
+treat it as an example, not a promise.
+
+00:07:59.634 --> 00:08:00.818
+Three things to take away.
+
+00:08:01.138 --> 00:08:04.309
+One portal covers model
+choice, deployment,
+
+00:08:04.309 --> 00:08:06.817
+agents, guardrails and evaluation.
+
+00:08:07.137 --> 00:08:09.444
+Agents do the work, people approve,
+
+00:08:09.444 --> 00:08:12.740
+and the system blocks.
+That is speed with control.
+
+00:08:13.060 --> 00:08:17.492
+Together, Copilot builds fast and
+Foundry lets you operate with trust.
+
+00:08:17.812 --> 00:08:21.292
+To try it on your own work, we
+propose a two-week proof of concept.
+
+00:08:21.292 --> 00:08:24.357
+Pick one or two workloads, and
+we will measure it together.
