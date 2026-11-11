@@ -5,6 +5,15 @@ const fa = require("react-icons/fa");
 const fs = require("fs");
 const path = require("path");
 
+// Edition switch: DEMO_LANG=ko (default) or DEMO_LANG=en. The Korean edition is built by build.js, the English one by en/build.js.
+const LANG = (process.env.DEMO_LANG || "ko").trim().toLowerCase();
+if (LANG !== "ko" && LANG !== "en") throw new Error(`Unsupported DEMO_LANG "${process.env.DEMO_LANG}" (use "ko" or "en")`);
+const LOCALE = LANG === "en" ? "en-US" : "ko-KR";
+// The Korean entry point (build/build.js) must not run in English mode: Korean text would get the English font and text metrics
+if (LANG === "en" && require.main && path.resolve(path.dirname(require.main.filename || "")) === __dirname) {
+  console.warn(`WARNING: DEMO_LANG=en is set but ${path.basename(require.main.filename)} is the Korean build - use en/build.js (npm run build:en) or unset DEMO_LANG`);
+}
+
 const ROOT = path.resolve(__dirname, "..");
 const A = (...p) => path.join(ROOT, "assets", ...p);
 const b64 = (p, mime = "image/png") => `${mime};base64,` + fs.readFileSync(p).toString("base64");
@@ -22,7 +31,7 @@ const C = {
   AMBER_DK: "8A6100", AMBER_TINT: "FFF4CC", AMBER_LINE: "F3D98A",
   GREEN_DK: "1E8E4E", GREEN_TINT: "E3F4EA", RED_DK: "B42318", RED_TINT: "FDECEA",
 };
-const FONT = "Malgun Gothic";
+const FONT = LANG === "en" ? "Aptos" : "Malgun Gothic";
 
 // 섹션별 색 (밝은 배경용 / 어두운 배경용)
 const SEC = {
@@ -53,6 +62,10 @@ const NB_PHRASES = [
 function nb(str) {
   let out = str;
   for (const ph of NB_PHRASES) out = out.split(ph).join(ph.replace(/ /g, "\u00A0"));
+  if (LANG === "en") {
+    // English only: keep numbers with their units ("2 min 42 s", "KRW 1,000,000") on one line
+    out = out.replace(/(\d) (?=(?:min|s|sec|days?|tests?|files?|lines?|commits?|questions?|demos?|clips?|people|stages?|evaluators?|approvals?|decisions?|calls?|AI)\b)/g, "$1\u00A0").replace(/\bKRW (?=\d)/g, "KRW\u00A0");
+  }
   return out;
 }
 function nbAll(text) {
@@ -64,7 +77,7 @@ function nbAll(text) {
 const shadow = (o = {}) => ({ type: "outer", color: o.color || "000000", blur: o.blur ?? 10, offset: o.offset ?? 3, angle: 90, opacity: o.opacity ?? 0.18 });
 
 function txt(slide, text, o = {}) {
-  slide.addText(nbAll(text), { fontFace: FONT, fontSize: 14, color: C.INK, margin: 0, valign: "top", align: "left", lang: "ko-KR", ...o });
+  slide.addText(nbAll(text), { fontFace: FONT, fontSize: 14, color: C.INK, margin: 0, valign: "top", align: "left", lang: LOCALE, ...o });
 }
 
 // "**강조**" 마커 → 런
@@ -122,21 +135,29 @@ function labelBox(slide, pres, text, x, y, w, h, o = {}) {
     fill: o.fill === null ? { type: "none" } : { color: o.fill ?? C.WHITE, transparency: o.transparency },
     line: o.line === null || o.line === undefined ? { type: "none" } : { color: o.line, width: o.lw ?? 0.75 },
     color: o.color ?? C.INK, fontFace: FONT, fontSize: o.size ?? 12, bold: o.bold ?? false,
-    align: o.align ?? "center", valign: o.valign ?? "middle", margin: o.margin ?? 4, lang: "ko-KR",
+    align: o.align ?? "center", valign: o.valign ?? "middle", margin: o.margin ?? 4, lang: LOCALE,
     charSpacing: o.charSpacing, lineSpacingMultiple: o.ls, shadow: o.shadow ? shadow() : undefined,
   });
 }
 
 // 한글/영문 혼합 라벨의 대략적인 폭
+// English edition: per-class average advance widths of Aptos Bold (inches per pt), measured from the font file
+const EN_W = { upper: 0.0090, digit: 0.0077, space: 0.0030, other: 0.0075 };
 function textW(label, size = 11, pad = 0) {
   let w = 0;
+  if (LANG === "en") {
+    for (const ch of label) w += /[A-Z]/.test(ch) ? EN_W.upper * size : /[0-9]/.test(ch) ? EN_W.digit * size : /\s/.test(ch) ? EN_W.space * size : EN_W.other * size;
+    return w + pad;
+  }
   for (const ch of label) w += /[\u3131-\uD79D]/.test(ch) ? 0.0150 * size : /[A-Z0-9]/.test(ch) ? 0.0105 * size : /\s/.test(ch) ? 0.0062 * size : 0.0092 * size;
   return w + pad;
 }
 
 function pill(slide, pres, label, x, y, h, o = {}) {
   const size = o.size ?? 11;
-  const w = o.w ?? textW(label, size, o.pad ?? 0.36);
+  // English edition: widen for letter-spacing, which textW() does not see
+  const spacing = LANG === "en" && o.charSpacing ? (o.charSpacing * [...label].length) / 72 : 0;
+  const w = o.w ?? textW(label, size, (o.pad ?? 0.36) + spacing);
   labelBox(slide, pres, label, x, y, w, h, { r: h / 2, fill: o.fill ?? C.BLUE, color: o.color ?? "FFFFFF", size, bold: o.bold ?? true, margin: 0, line: o.line, lw: o.lw, charSpacing: o.charSpacing });
   return w;
 }
@@ -159,7 +180,7 @@ function msLogo(slide, pres, x, y, d) {
   }
 }
 
-const FOOT = "Microsoft Foundry × GitHub Copilot  ·  데모로 보는 AI 앱 개발";
+const FOOT = LANG === "en" ? "Microsoft Foundry × GitHub Copilot  ·  AI app development, shown in demos" : "Microsoft Foundry × GitHub Copilot  ·  데모로 보는 AI 앱 개발";
 
 // 밝은 슬라이드 프레임: 키커 + 제목 + 푸터
 function lightFrame(slide, pres, { sec = "intro", kicker, title, page, total, titleSize = 28, foot }) {
@@ -179,6 +200,6 @@ function darkFooter(slide, pres, { page, total, note }) {
 }
 
 module.exports = {
-  ROOT, A, b64, C, FONT, SEC, FOOT, getIcon, shadow, txt, rich, nb, nbAll, iconCircle, iconOnly, rrect, rect, oval, labelBox, textW, pill,
+  ROOT, A, b64, C, LANG, LOCALE, FONT, SEC, FOOT, getIcon, shadow, txt, rich, nb, nbAll, iconCircle, iconOnly, rrect, rect, oval, labelBox, textW, pill,
   numBadge, arrow, msLogo, lightFrame, darkFooter,
 };
